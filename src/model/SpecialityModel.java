@@ -23,7 +23,7 @@ public class SpecialityModel implements CRUD {
         Connection objConnection = configDB.openConnection();
 
         try {
-            String sql = "INSERT INTO especialidad (name, description) VALUES (?, ?)";
+            String sql = "INSERT INTO specialty (name, description) VALUES (?, ?)";
             PreparedStatement objPrepare = objConnection.prepareStatement(sql);
 
             objPrepare.setString(1, objSpeciality.getName());
