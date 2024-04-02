@@ -12,7 +12,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class SpecialityModel implements CRUD {
-
     @Override
     public ArrayList<Object> listar() {
         ArrayList<Object> specialtyList = new ArrayList<>();
@@ -70,12 +69,12 @@ public class SpecialityModel implements CRUD {
         boolean isUpdate = false;
 
         try {
-            String sql = "UPDATE specialty SET name = ?, description = ?, WHERE id = ?;";
+            String sql = "UPDATE specialty SET name = ?, description = ? WHERE specialty_id = ?;";
             PreparedStatement objPrepare = objConnection.prepareStatement(sql);
 
-            objPrepare.setString(1, objSpeciality.getId());
-            objPrepare.setString(2, objSpeciality.getName());
-            objPrepare.setString(3, objSpeciality.getDescription());
+            objPrepare.setString(1, objSpeciality.getName());
+            objPrepare.setString(2, objSpeciality.getDescription());
+            objPrepare.setInt(3, objSpeciality.getId());
 
             int rowsAffected = objPrepare.executeUpdate();
 
@@ -92,6 +91,30 @@ public class SpecialityModel implements CRUD {
 
     @Override
     public boolean delete(Object obj) {
+
+        boolean isDeleted = false;
+
+        Speciality objSpeciality = (Speciality) obj;
+        Connection objConnection = configDB.openConnection();
+        try {
+            String sql = "DELETE FROM specialty WHERE specialty_id = ?;";
+            PreparedStatement objPrepare = objConnection.prepareStatement(sql);
+
+            objPrepare.setInt(1, objSpeciality.getId());
+
+            int affectedRows = objPrepare.executeUpdate();
+
+            if (affectedRows > 0) {
+                JOptionPane.showMessageDialog(null, "Specialty successfully deleted");
+                isDeleted = true;
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error"
+                    + e.getMessage());
+        }
+
+
         return false;
     }
 }
