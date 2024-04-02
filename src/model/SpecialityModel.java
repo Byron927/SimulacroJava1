@@ -65,7 +65,29 @@ public class SpecialityModel implements CRUD {
 
     @Override
     public boolean update(Object obj) {
-        return false;
+        Speciality objSpeciality = (Speciality) obj;
+        Connection objConnection = configDB.openConnection();
+        boolean isUpdate = false;
+
+        try {
+            String sql = "UPDATE specialty SET name = ?, description = ?, WHERE id = ?;";
+            PreparedStatement objPrepare = objConnection.prepareStatement(sql);
+
+            objPrepare.setString(1, objSpeciality.getId());
+            objPrepare.setString(2, objSpeciality.getName());
+            objPrepare.setString(3, objSpeciality.getDescription());
+
+            int rowsAffected = objPrepare.executeUpdate();
+
+            if (rowsAffected > 0) {
+                isUpdate = true;
+                JOptionPane.showInputDialog(null, "Successfully Updated");
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+        }
+        return isUpdate;
     }
 
     @Override
