@@ -18,4 +18,20 @@ public class SpecialityController {
 
         objModel.create(objSpeciality);
     }
+
+    public static void specialtyList() {
+        //Traemos el objModel para acceder a sus metodos
+        SpecialityModel objSpecialtyModel = new SpecialityModel();
+        //Creamos String vacio para poderlo mostrar en JOptionpain, porque no queremos el objeto como tal
+        //sino que necesitamos recorrer para mostrar los String que hay en el objeto
+        String specialtiesList = "SPECIALTIES LIST \n";
+    //Sintaxis foreach: for(tipo de dato, nombre variable(el que va a iterar) : esto es un arraylist de Object)
+        for (Object specialtyObj : objSpecialtyModel.listar()) {
+            specialtiesList += (Speciality) specialtyObj + "\n" ;
+        }
+
+        JOptionPane.showMessageDialog(null,specialtiesList);
+
+
+    }
 }
