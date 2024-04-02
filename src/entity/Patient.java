@@ -1,19 +1,18 @@
-package entities;
+package entity;
 
-public class Doctor {
+public class Patient {
     private int id;
     private String name;
     private String lastname;
-    private int specialtyId;
+    private String borndate;
+    private int dni;
 
-    public Doctor(int id, String name, String lastname, int specialtyId) {
+    public Patient(int id, String name, String lastname, String borndate, int dni) {
         this.id = id;
         this.name = name;
         this.lastname = lastname;
-        this.specialtyId = specialtyId;
-    }
-
-    public Doctor() {
+        this.borndate = borndate;
+        this.dni = dni;
     }
 
     public int getId() {
@@ -40,21 +39,30 @@ public class Doctor {
         this.lastname = lastname;
     }
 
-    public int getSpecialtyId() {
-        return specialtyId;
+    public String getBorndate() {
+        return borndate;
     }
 
-    public void setSpecialtyId(int specialtyId) {
-        this.specialtyId = specialtyId;
+    public void setBorndate(String borndate) {
+        this.borndate = borndate;
+    }
+
+    public int getDni() {
+        return dni;
+    }
+
+    public void setDni(int dni) {
+        this.dni = dni;
     }
 
     @Override
     public String toString() {
-        return "Doctor{" +
+        return "Patient{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", lastname='" + lastname + '\'' +
-                ", specialtyId=" + specialtyId +
+                ", borndate='" + borndate + '\'' +
+                ", dni=" + dni +
                 '}';
     }
 }

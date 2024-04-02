@@ -13,9 +13,9 @@ public class configDB {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             //Creamos las variables de conexión
-            String url = "jdbc:mysql://localhost:3306/hospital";
-            String user = "root";
-            String password = "Rlwl2023.";
+            String url = "jdbc:mysql://bawfa1xmfgefo2zmhgwl-mysql.services.clever-cloud.com/bawfa1xmfgefo2zmhgwl";
+            String user = "uikgnopdbancp6gn";
+            String password = "tDqeoMuweZ2uB4JZYAYx";
 
             //Establecer la conexión
             objConnection = (Connection) DriverManager.getConnection(url, user, password);
