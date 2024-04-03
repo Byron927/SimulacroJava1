@@ -48,12 +48,18 @@ public class SpecialityModel implements CRUD {
 
         try {
             String sql = "INSERT INTO specialty (name, description) VALUES (?, ?)";
-            PreparedStatement objPrepare = objConnection.prepareStatement(sql);
+            PreparedStatement objPrepare = objConnection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
 
             objPrepare.setString(1, objSpeciality.getName());
             objPrepare.setString(2, objSpeciality.getDescription());
 
             objPrepare.execute();
+
+            ResultSet objResult = objPrepare.getGeneratedKeys();
+
+            while (objResult.next()) {
+                objSpeciality.setId(objResult.getInt(1));
+            }
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error"

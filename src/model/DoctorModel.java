@@ -34,7 +34,6 @@ public class DoctorModel implements CRUD {
                 objDoctor.setLastname(objResult.getString("doctor_lastname"));
 
                 doctorList.add(objDoctor);
-
             }
 
         } catch (SQLException e) {
@@ -52,13 +51,19 @@ public class DoctorModel implements CRUD {
 
         try {
             String sql = "INSERT INTO doctor (doctor_name, doctor_lastname, specialtyId) VALUES (?, ?, ?)";
-            PreparedStatement objPrepare = objConnection.prepareStatement(sql);
+            PreparedStatement objPrepare = objConnection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
 
             objPrepare.setString(1, objDoctor.getName());
             objPrepare.setString(2, objDoctor.getLastname());
             objPrepare.setInt(3, objDoctor.getSpecialtyId());
 
             objPrepare.execute();
+
+            ResultSet objResult = objPrepare.getGeneratedKeys();
+
+            while (objResult.next()){
+                objDoctor.setId((objResult.getInt(1)));
+            }
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error"
@@ -69,7 +74,30 @@ public class DoctorModel implements CRUD {
 
     @Override
     public boolean update(Object obj) {
-        return false;
+        Doctor objDoctor = (Doctor) obj;
+        Connection objConnection = configDB.openConnection();
+        boolean isUpdate = false;
+
+        try {
+            String sql = "UPDATE doctor SET doctor_name = ?, doctor_lastname = ?, specialtyId = ? WHERE doctor_id = ?;";
+            PreparedStatement objPrepare = objConnection.prepareStatement(sql);
+
+            objPrepare.setString(1, objDoctor.getName());
+            objPrepare.setString(2, objDoctor.getLastname());
+            objPrepare.setInt(3, objDoctor.getSpecialtyId());
+            objPrepare.setInt(4, objDoctor.getId());
+
+            int affectedRows = objPrepare.executeUpdate();
+
+            if (affectedRows > 0) {
+                isUpdate = true;
+                JOptionPane.showMessageDialog(null, "Successfully Updated");
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+        }
+        return isUpdate;
     }
 
     @Override
