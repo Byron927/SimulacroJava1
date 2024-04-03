@@ -18,7 +18,7 @@ public class SpecialityController {
 
         Speciality specialtyString = (Speciality) objModel.create(objSpeciality);
 
-        JOptionPane.showMessageDialog(null, "The user has been created correctly\n" + specialtyString);
+        JOptionPane.showMessageDialog(null, "The specialty has been created correctly\n" + specialtyString);
     }
 
     public static void specialtyList() {
