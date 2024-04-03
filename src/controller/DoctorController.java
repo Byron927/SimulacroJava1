@@ -25,4 +25,26 @@ public class DoctorController {
         JOptionPane.showMessageDialog(null, doctor + "\nThe doctor has been created correctly");
 
     }
+
+    public static void doctorList() {
+        DoctorModel objDoctorModel = new DoctorModel();
+        String doctorsList = "DOCTORS LIST \n";
+
+        for (Object doctorObj : objDoctorModel.listar()) {
+            doctorsList += (Doctor) doctorObj + "\n";
+        }
+
+        JOptionPane.showMessageDialog(null, doctorsList);
+    }
+
+    public static String doctorStringList() {
+        DoctorModel objDoctorModel = new DoctorModel();
+        String doctorsList = "DOCTORS LIST \n";
+
+        for (Object doctorObj : objDoctorModel.listar()) {
+            doctorsList += (Doctor) doctorObj + "\n";
+        }
+
+        return doctorsList;
+    }
 }
