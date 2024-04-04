@@ -71,7 +71,7 @@ public class SpecialityController {
         SpecialityModel objDeleteModel = new SpecialityModel();
         Speciality objSpeciality = new Speciality();
 
-        int specialtyId = Integer.parseInt(JOptionPane.showInputDialog(specialtyListString() + "\nWhat is the specialty id that you want to delete?"));
+        int specialtyId = Integer.parseInt(JOptionPane.showInputDialog(specialtyListString() + "\nWhich speciality do you want to delete?"));
 
         objSpeciality.setId(specialtyId);
 
