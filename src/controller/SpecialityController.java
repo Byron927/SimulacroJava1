@@ -68,13 +68,13 @@ public class SpecialityController {
     }
 
     public static void specialtyDelete() {
-        SpecialityModel objUpdatedModel = new SpecialityModel();
+        SpecialityModel objDeleteModel = new SpecialityModel();
         Speciality objSpeciality = new Speciality();
 
         int specialtyId = Integer.parseInt(JOptionPane.showInputDialog(specialtyListString() + "\nWhat is the specialty id that you want to delete?"));
 
         objSpeciality.setId(specialtyId);
 
-        objUpdatedModel.delete(objSpeciality);
+        objDeleteModel.delete(objSpeciality);
     }
 }

@@ -107,6 +107,29 @@ public class DoctorModel implements CRUD {
 
     @Override
     public boolean delete(Object obj) {
+        boolean isDeleted = false;
+
+        Doctor objDoctor = (Doctor) obj;
+        Connection objConnection = configDB.openConnection();
+        try {
+            String sql = "DELETE FROM doctor WHERE doctor_id = ?;";
+            PreparedStatement objPrepare = objConnection.prepareStatement(sql);
+
+            objPrepare.setInt(1, objDoctor.getId());
+
+            int affectedRows = objPrepare.executeUpdate();
+
+            if (affectedRows > 0) {
+                JOptionPane.showMessageDialog(null, "Doctor successfully deleted");
+                isDeleted = true;
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error"
+                    + e.getMessage());
+        }
+
+        configDB.closeConnection();
         return false;
     }
 }
