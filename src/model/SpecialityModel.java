@@ -38,6 +38,7 @@ public class SpecialityModel implements CRUD {
                     + e.getMessage());
         }
 
+        configDB.closeConnection();
         return specialtyList;
     }
 
@@ -65,6 +66,8 @@ public class SpecialityModel implements CRUD {
             JOptionPane.showMessageDialog(null, "Error"
                     + e.getMessage());
         }
+
+        configDB.closeConnection();
         return objSpeciality;
     }
 
@@ -92,6 +95,8 @@ public class SpecialityModel implements CRUD {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
         }
+
+        configDB.closeConnection();
         return isUpdate;
     }
 
@@ -120,7 +125,7 @@ public class SpecialityModel implements CRUD {
                     + e.getMessage());
         }
 
-
+        configDB.closeConnection();
         return false;
     }
 }

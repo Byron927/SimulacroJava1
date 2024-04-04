@@ -41,6 +41,7 @@ public class DoctorModel implements CRUD {
                     + e.getMessage());
         }
 
+        configDB.closeConnection();
         return doctorList;
     }
 
@@ -61,7 +62,7 @@ public class DoctorModel implements CRUD {
 
             ResultSet objResult = objPrepare.getGeneratedKeys();
 
-            while (objResult.next()){
+            while (objResult.next()) {
                 objDoctor.setId((objResult.getInt(1)));
             }
 
@@ -69,6 +70,8 @@ public class DoctorModel implements CRUD {
             JOptionPane.showMessageDialog(null, "Error"
                     + e.getMessage());
         }
+
+        configDB.closeConnection();
         return objDoctor;
     }
 
@@ -97,6 +100,8 @@ public class DoctorModel implements CRUD {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
         }
+
+        configDB.closeConnection();
         return isUpdate;
     }
 

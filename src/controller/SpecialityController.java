@@ -60,6 +60,7 @@ public class SpecialityController {
         String name = JOptionPane.showInputDialog("What is the specialty name that you want to update?");
         String description = JOptionPane.showInputDialog("What is the specialty description that you want to update?");
 
+        //Traigo el id para poder ver cuál deseo editar
         objSpeciality.setId(specialtyId);
         objSpeciality.setName(name);
         objSpeciality.setDescription(description);

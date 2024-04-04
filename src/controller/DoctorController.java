@@ -5,6 +5,8 @@ import model.DoctorModel;
 
 import javax.swing.*;
 
+import static controller.SpecialityController.specialtyListString;
+
 public class DoctorController {
     //todos los controller son static porque de ahi podemos acceder a sus metodos
     public static void doctorCreate() {
@@ -15,7 +17,7 @@ public class DoctorController {
 
         String name = JOptionPane.showInputDialog("Insert the doctor name");
         String lastname = JOptionPane.showInputDialog("Insert the doctor lastname");
-        int specialtyId = Integer.parseInt(JOptionPane.showInputDialog(SpecialityController.specialtyListString() + "Insert the doctor specialty id"));
+        int specialtyId = Integer.parseInt(JOptionPane.showInputDialog(specialtyListString() + "Insert the doctor specialty id"));
 
         objDoctor.setName(name);
         objDoctor.setLastname(lastname);
@@ -56,7 +58,11 @@ public class DoctorController {
 
         String name = JOptionPane.showInputDialog("What is the doctor name that you want to update?");
         String lastname = JOptionPane.showInputDialog("What is the doctor lastname that you want to update?");
-        int specialty_id = JOptionPane
+        int specialty_id = Integer.parseInt(JOptionPane.showInputDialog(specialtyListString() + "\nWhat is the specialty id that you want to update?"));
 
+        objDoctor.setId(doctorId);
+        objDoctor.setName(name);
+        objDoctor.setLastname(lastname);
+        objDoctor.setSpecialtyId(specialty_id);
     }
 }
