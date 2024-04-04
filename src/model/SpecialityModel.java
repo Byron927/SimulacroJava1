@@ -89,14 +89,16 @@ public class SpecialityModel implements CRUD {
 
             if (rowsAffected > 0) {
                 isUpdate = true;
-                JOptionPane.showInputDialog(null, "Successfully Updated");
+                JOptionPane.showMessageDialog(null, "Successfully Updated");
             }
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+        } finally {
+
+            configDB.closeConnection();
         }
 
-        configDB.closeConnection();
         return isUpdate;
     }
 

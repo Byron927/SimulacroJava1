@@ -64,6 +64,7 @@ public class SpecialityController {
         objSpeciality.setId(specialtyId);
         objSpeciality.setName(name);
         objSpeciality.setDescription(description);
+        objUpdatedModel.update(objSpeciality);
     }
 
     public static void specialtyDelete() {

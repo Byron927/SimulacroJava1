@@ -64,5 +64,6 @@ public class DoctorController {
         objDoctor.setName(name);
         objDoctor.setLastname(lastname);
         objDoctor.setSpecialtyId(specialty_id);
+        objUpdateDoctor.update(objDoctor);
     }
 }
