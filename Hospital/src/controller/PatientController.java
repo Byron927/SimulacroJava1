@@ -35,4 +35,28 @@ public class PatientController {
             JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
         }
     }
+
+    public static void patientList() {
+        PatientModel objPatientModel = new PatientModel();
+        String patientsList = "PATIENTS LIST \n";
+
+        for (Object patientObj : objPatientModel.listar()) {
+            patientsList += (Patient) patientObj + "\n";
+        }
+
+        JOptionPane.showMessageDialog(null, patientsList);
+    }
+
+    public static String patientStringList() {
+        PatientModel objPatientModel = new PatientModel();
+        String patientsList = "PATIENTS LIST \n";
+
+        for (Object patientObj : objPatientModel.listar()) {
+            patientsList += (Patient) patientObj + "\n";
+        }
+
+        return patientsList;
+    }
 }
+
+

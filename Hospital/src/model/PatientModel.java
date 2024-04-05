@@ -1,6 +1,7 @@
 package model;
 
 import database.configDB;
+import entity.Doctor;
 import entity.Patient;
 import interfaces.CRUD;
 
@@ -15,7 +16,33 @@ public class PatientModel implements CRUD {
 
     @Override
     public ArrayList<Object> listar() {
-        return null;
+        ArrayList<Object> patientList = new ArrayList<>();
+        Connection objConnection = configDB.openConnection();
+
+        try {
+            String sql = "SELECT * FROM patient";
+            PreparedStatement objPrepare = objConnection.prepareStatement(sql);
+
+            ResultSet objResult = objPrepare.executeQuery();
+
+            while (objResult.next()) {
+                //En cada iteración necesitamos que se agregue un objeto al arraylist
+                Patient objPatient = new Patient();
+                objPatient.setId(objResult.getInt("patient_id"));
+                objPatient.setName(objResult.getString("patient_name"));
+                objPatient.setLastname(objResult.getString("patient_lastname"));
+                objPatient.setBorndate(objResult.getString("born_date"));
+                objPatient.setDni(objResult.getString("dni"));
+                patientList.add(objPatient);
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error"
+                    + e.getMessage());
+        }
+
+        configDB.closeConnection();
+        return patientList;
     }
 
     @Override
@@ -51,7 +78,20 @@ public class PatientModel implements CRUD {
 
     @Override
     public boolean update(Object obj) {
-        return false;
+        Patient objPatient = (Patient) obj;
+        Connection objConnection = configDB.openConnection();
+        boolean isUpdate = false;
+
+        try {
+            String sql = "UPDATE patient SET patient_name = ?, patient_lastname = ?, born_date = ?, dni = ? WHERE patient_id = ?;";
+
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+        }
+
+        configDB.closeConnection();
+        return isUpdate;
     }
 
     @Override
