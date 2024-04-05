@@ -63,7 +63,7 @@ public class DoctorModel implements CRUD {
             ResultSet objResult = objPrepare.getGeneratedKeys();
 
             while (objResult.next()) {
-                objDoctor.setId((objResult.getInt(1)));
+                objDoctor.setId(objResult.getInt(1));
             }
 
         } catch (SQLException e) {

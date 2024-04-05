@@ -1,4 +1,5 @@
 import controller.DoctorController;
+import controller.PatientController;
 import controller.SpecialityController;
 import database.configDB;
 
@@ -6,6 +7,6 @@ import database.configDB;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        DoctorController.doctorDelete();
+        PatientController.patientCreate();
     }
 }

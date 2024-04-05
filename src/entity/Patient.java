@@ -5,14 +5,17 @@ public class Patient {
     private String name;
     private String lastname;
     private String borndate;
-    private int dni;
+    private String dni;
 
-    public Patient(int id, String name, String lastname, String borndate, int dni) {
+    public Patient(int id, String name, String lastname, String borndate, String dni) {
         this.id = id;
         this.name = name;
         this.lastname = lastname;
         this.borndate = borndate;
         this.dni = dni;
+    }
+
+    public Patient() {
     }
 
     public int getId() {
@@ -47,11 +50,11 @@ public class Patient {
         this.borndate = borndate;
     }
 
-    public int getDni() {
+    public String getDni() {
         return dni;
     }
 
-    public void setDni(int dni) {
+    public void setDni(String dni) {
         this.dni = dni;
     }
 
