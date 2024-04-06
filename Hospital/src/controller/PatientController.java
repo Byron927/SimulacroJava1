@@ -57,6 +57,46 @@ public class PatientController {
 
         return patientsList;
     }
+
+    public static void patientUpdate() {
+        PatientModel objPatientUpdate = new PatientModel();
+        Patient objPatient = new Patient();
+
+        int patientId = Integer.parseInt(JOptionPane.showInputDialog(patientStringList() + "\n What is the patient id that you want to update?"));
+
+        //agregando validacion para el paciente
+        if (objPatient == null) {
+            JOptionPane.showMessageDialog(null, "Patient not found");
+        } else {
+            String name = JOptionPane.showInputDialog("What is the patient name that you want to update?");
+            if (name == null) {
+                // Cerrar el programa
+                System.exit(0);
+            }
+            String lastName = JOptionPane.showInputDialog("What is the patient lastname that you want to update?");
+            if (lastName == null) {
+                System.exit(0);
+            }
+            String bornDate = JOptionPane.showInputDialog("What is the patient born date that you want to update?");
+            if (bornDate == null) {
+                System.exit(0);
+            }
+            String dni = JOptionPane.showInputDialog("What is the patient dni that you want to update?");
+            if (dni == null) {
+                System.exit(0);
+            }
+            DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            if (dateFormat == null) {
+                System.exit(0);
+            }
+
+            objPatient.setName(name);
+            objPatient.setLastname(lastName);
+            objPatient.setBorndate(bornDate);
+            objPatient.setDni(dni);
+            objPatientUpdate.update(objPatient);
+        }
+    }
 }
 
 

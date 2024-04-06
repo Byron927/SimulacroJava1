@@ -55,7 +55,7 @@ public class DoctorController {
         DoctorModel objUpdateDoctor = new DoctorModel();
         Doctor objDoctor = new Doctor();
 
-        int doctorId = Integer.parseInt(JOptionPane.showInputDialog(doctorStringList() + "\n What is the doctor that you want to update?"));
+        int doctorId = Integer.parseInt(JOptionPane.showInputDialog(doctorStringList() + "\n What is the doctor id that you want to update?"));
 
         String name = JOptionPane.showInputDialog("What is the doctor name that you want to update?");
         String lastname = JOptionPane.showInputDialog("What is the doctor lastname that you want to update?");

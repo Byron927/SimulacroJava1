@@ -84,7 +84,20 @@ public class PatientModel implements CRUD {
 
         try {
             String sql = "UPDATE patient SET patient_name = ?, patient_lastname = ?, born_date = ?, dni = ? WHERE patient_id = ?;";
+            PreparedStatement objPrepare = objConnection.prepareStatement(sql);
 
+            objPrepare.setString(1, objPatient.getName());
+            objPrepare.setString(2, objPatient.getLastname());
+            objPrepare.setString(3, objPatient.getBorndate());
+            objPrepare.setString(4, objPatient.getDni());
+            objPrepare.setInt(5, objPatient.getId());
+
+            int affectedRows = objPrepare.executeUpdate();
+
+            if (affectedRows > 0) {
+                isUpdate = true;
+                JOptionPane.showMessageDialog(null, "Successfully Updated");
+            }
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
