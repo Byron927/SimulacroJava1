@@ -1,7 +1,6 @@
 package model;
 
-import database.configDB;
-import entity.Doctor;
+import database.configDB;import entity.Doctor;
 import entity.Patient;
 import interfaces.CRUD;
 
@@ -105,6 +104,32 @@ public class PatientModel implements CRUD {
 
         configDB.closeConnection();
         return isUpdate;
+    }
+
+    public Patient findById(int id) {
+        Connection connection = configDB.openConnection();
+        Patient objPatient = null;
+        String sql = "SELECT * FROM patient WHERE patient_id = ?";
+        try {
+            PreparedStatement objPrepared = connection.prepareStatement(sql);
+            objPrepared.setInt(1, id);
+
+            ResultSet result = objPrepared.executeQuery();
+            if (result.next()) {
+                objPatient = new Patient();
+                objPatient.setId(result.getInt("patient_id"));
+                objPatient.setName(result.getString("patient_name"));
+                objPatient.setLastname(result.getString("patient_lastName"));
+                objPatient.setBorndate(result.getString("born_date"));
+                objPatient.setDni(result.getString("dni"));
+            }
+        } catch (SQLException error) {
+            JOptionPane.showMessageDialog(null, error.getMessage());
+        } finally {
+            configDB.closeConnection();
+        }
+        return objPatient;
+
     }
 
     @Override

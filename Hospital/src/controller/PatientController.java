@@ -59,42 +59,42 @@ public class PatientController {
     }
 
     public static void patientUpdate() {
-        PatientModel objPatientUpdate = new PatientModel();
-        Patient objPatient = new Patient();
+        PatientModel objModelUpdate = new PatientModel();
 
         int patientId = Integer.parseInt(JOptionPane.showInputDialog(patientStringList() + "\n What is the patient id that you want to update?"));
+        Patient objPatient = objModelUpdate.findById(patientId);
 
-        //agregando validacion para el paciente
+        //Agregando validacion para el paciente
         if (objPatient == null) {
             JOptionPane.showMessageDialog(null, "Patient not found");
         } else {
-            String name = JOptionPane.showInputDialog("What is the patient name that you want to update?");
+            String name = JOptionPane.showInputDialog("What is the patient name that you want to update?", objPatient.getName());
             if (name == null) {
                 // Cerrar el programa
                 System.exit(0);
             }
-            String lastName = JOptionPane.showInputDialog("What is the patient lastname that you want to update?");
+            String lastName = JOptionPane.showInputDialog("What is the patient lastname that you want to update?", objPatient.getLastname());
             if (lastName == null) {
                 System.exit(0);
             }
-            String bornDate = JOptionPane.showInputDialog("What is the patient born date that you want to update?");
+            String bornDate = JOptionPane.showInputDialog("What is the patient born date that you want to update?", objPatient.getBorndate());
             if (bornDate == null) {
                 System.exit(0);
             }
-            String dni = JOptionPane.showInputDialog("What is the patient dni that you want to update?");
+            String dni = JOptionPane.showInputDialog("What is the patient dni that you want to update?", objPatient.getDni());
             if (dni == null) {
                 System.exit(0);
             }
-            DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+          /*  DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             if (dateFormat == null) {
                 System.exit(0);
-            }
+            }*/
 
             objPatient.setName(name);
             objPatient.setLastname(lastName);
             objPatient.setBorndate(bornDate);
             objPatient.setDni(dni);
-            objPatientUpdate.update(objPatient);
+            objModelUpdate.update(objPatient);
         }
     }
 }
