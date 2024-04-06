@@ -1,6 +1,7 @@
 package model;
 
-import database.configDB;import entity.Doctor;
+import database.configDB;
+import entity.Doctor;
 import entity.Patient;
 import interfaces.CRUD;
 
@@ -95,7 +96,7 @@ public class PatientModel implements CRUD {
 
             if (affectedRows > 0) {
                 isUpdate = true;
-                JOptionPane.showMessageDialog(null, "Successfully Updated");
+                JOptionPane.showMessageDialog(null, objPatient + "\nSuccessfully Updated");
             }
 
         } catch (SQLException e) {
