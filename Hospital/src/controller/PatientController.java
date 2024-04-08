@@ -1,6 +1,8 @@
 package controller;
 
+import entity.Doctor;
 import entity.Patient;
+import model.DoctorModel;
 import model.PatientModel;
 
 import javax.swing.*;
@@ -96,6 +98,18 @@ public class PatientController {
             objPatient.setDni(dni);
             objModelUpdate.update(objPatient);
         }
+    }
+
+    public static void patientDelete() {
+        PatientModel objPatientModel = new PatientModel();
+        Patient objPatient = new Patient();
+
+        int patientId = Integer.parseInt(JOptionPane.showInputDialog(patientStringList() + "\nWhat is the patient id that you want to delete?"));
+
+        objPatient.setId(patientId);
+
+        objPatientModel.delete(objPatient);
+
     }
 }
 
