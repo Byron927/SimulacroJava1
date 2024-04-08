@@ -13,10 +13,10 @@ public class Main {
         int option = 0, specialtyOption = 0, patientOption = 0, doctorOption = 0, appointmentOption = 0;
         do {
             option = Integer.parseInt(JOptionPane.showInputDialog("""
-                    1. CRUD Specialty
-                    2. CRUD patient
-                    3. CRUD Doctor
-                    4. CRUD appointment
+                    1. Specialty CRUD
+                    2. Patient CRUD
+                    3. Doctor CRUD
+                    4. Appointment CRUD
                     5. Exit
                                         
                     Enter the option:
