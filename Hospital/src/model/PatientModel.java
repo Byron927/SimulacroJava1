@@ -160,4 +160,28 @@ public class PatientModel implements CRUD {
         configDB.closeConnection();
         return false;
     }
+
+    public Patient patientByDni(int dni){
+        Patient objPatient = null;
+        String sql = "SELECT * FROM patient WHERE dni = ?;";
+        try {
+            Connection objConnection = configDB.openConnection();
+            PreparedStatement objPrepared = objConnection.prepareStatement(sql);
+            objPrepared.setInt(1, dni);
+
+            ResultSet result = objPrepared.executeQuery();
+            while (result.next()){
+                objPatient = new Patient();
+                objPatient.setId(result.getInt("patient_id"));
+                objPatient.setName(result.getString("patient_name"));
+                objPatient.setLastname(result.getString("patient_lastName"));
+                objPatient.setBorndate(result.getString("born_date"));
+                objPatient.setDni(result.getString("dni"));
+                JOptionPane.showMessageDialog(null, objPatient);
+            }
+        } catch (SQLException error){
+            JOptionPane.showMessageDialog(null, error.getMessage());
+        }
+        return objPatient;
+    }
 }

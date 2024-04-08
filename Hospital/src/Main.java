@@ -57,7 +57,7 @@ public class Main {
                         patientOption = Integer.parseInt(JOptionPane.showInputDialog("""
                                 1. Create Patient.
                                 2. List of the Patient's.
-                                3. Find by DNI of the patient.
+                                3. Find by Patient dni.
                                 4. Update Patient by id.
                                 5. Delete Patient
                                 6. Exit
@@ -72,9 +72,9 @@ public class Main {
                             case 2:
                                 PatientController.patientList();
                                 break;
-                            /*case 3:
-                                PatientController.findByDNI();
-                                break;*/
+                            case 3:
+                                PatientController.findByDni();
+                                break;
                             case 4:
                                 PatientController.patientUpdate();
                                 break;

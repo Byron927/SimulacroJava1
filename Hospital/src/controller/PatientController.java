@@ -111,6 +111,17 @@ public class PatientController {
         objPatientModel.delete(objPatient);
 
     }
+
+    public static void findByDni() {
+        PatientModel objModel = new PatientModel();
+        int dni = Integer.parseInt(JOptionPane.showInputDialog("Enter the dni patient to consult: "));
+        Patient patient = objModel.patientByDni(dni);
+        if (patient == null) {
+            JOptionPane.showMessageDialog(null, "Patient not found");
+        } else {
+            objModel.patientByDni(dni);
+        }
+    }
 }
 
 
