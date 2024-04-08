@@ -1,3 +1,4 @@
+import controller.AppointmentController;
 import controller.DoctorController;
 import controller.PatientController;
 import controller.SpecialityController;
@@ -118,7 +119,7 @@ public class Main {
 
                     } while (doctorOption != 6);
                     break;
-                /*case 4:
+                case 4:
                     do {
                         appointmentOption = Integer.parseInt(JOptionPane.showInputDialog("""
                     1. Create Appointment.
@@ -136,7 +137,7 @@ public class Main {
                             case 1:
                                 AppointmentController.appointmentCreate();
                                 break;
-                            case 2:
+                            /*case 2:
                                 AppointmentController.appointmentList();
                                 break;
                             case 3:
@@ -147,11 +148,11 @@ public class Main {
                                 break;
                             case 5:
                                 AppointmentController.appointmentDelete();
-                                break;
+                                break;*/
                         }
 
                     }while (appointmentOption != 6);
-                    break;*/
+                    break;
             }
 
 

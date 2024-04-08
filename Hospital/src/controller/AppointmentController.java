@@ -7,36 +7,38 @@ import model.PatientModel;
 
 import javax.swing.*;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 public class AppointmentController {
 
     public static void appointmentCreate() {
-        AppointmentModel objAppointmentModel = new AppointmentModel();
+        AppointmentModel objModel = new AppointmentModel();
         Appointment objAppointment = new Appointment();
-
-        String name = JOptionPane.showInputDialog("Insert the new patient name");
-        String lastname = JOptionPane.showInputDialog("Insert the new patient lastname");
-        String dni = JOptionPane.showInputDialog("Insert the patient DNI");
-
-        String born_date = JOptionPane.showInputDialog("Insert the new patient born date (YYYY-MM-DD)");
+        String date = JOptionPane.showInputDialog("Enter the date (YYYY-MM-DD) of the new appointment: ");
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
         try {
-            LocalDate.parse(born_date, dateFormat);
-
-            objPatient.setName(name);
-            objPatient.setLastname(lastname);
-            objPatient.setBorndate(born_date);
-            objPatient.setDni(dni);
-
-            Patient patient = (Patient) objPatientModel.create(objPatient);
-            JOptionPane.showMessageDialog(null, patient + "\n Patient has been successfully created");
-
-        } catch (DateTimeParseException e) {
-            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+            LocalDate.parse(date, dateFormat);
+            String hour = JOptionPane.showInputDialog("Insert the hour (HH:MM:SS) of the new appointment: ");
+            try {
+                LocalTime appointmentHour = LocalTime.parse(hour);
+                String reason = JOptionPane.showInputDialog("Insert the appointment reason: ");
+                int patientAppointment = Integer.parseInt(JOptionPane.showInputDialog(PatientController.patientStringList() + "\nInsert the patient id of the new appointment: "));
+                int doctorAppointment = Integer.parseInt(JOptionPane.showInputDialog(DoctorController.doctorStringList() + "\nInsert the doctor id of the new appointment: "));
+                objAppointment.setDate(date);
+                objAppointment.setHour(hour);
+                objAppointment.setReason(reason);
+                objAppointment.setPatientId(patientAppointment);
+                objAppointment.setDoctorId(doctorAppointment);
+                objAppointment = (Appointment) objModel.create(objAppointment);
+                JOptionPane.showMessageDialog(null, objAppointment.toString());
+            } catch (DateTimeParseException error) {
+                JOptionPane.showMessageDialog(null, "The hour format entered is not valid!");
+            }
+        } catch (DateTimeParseException error) {
+            JOptionPane.showMessageDialog(null, "The date format entered is not valid!");
         }
     }
-
 }
